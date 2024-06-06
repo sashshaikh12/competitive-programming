@@ -243,7 +243,7 @@
 
     /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
-    ll combination(ll n, ll r, ll m, vector<ll> &fact, vector<ll> &ifact)
+    ll combination(ll n, ll r, ll m, vector<ll> &fact, vector<ll> &ifact) //O(1)
     {
         return mod_mul(fact[n] , mod_mul(ifact[r] , ifact[n - r], m), m);
     }
