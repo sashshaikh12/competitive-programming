@@ -235,6 +235,42 @@
 
     /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
+    ll mminvprime(ll a, ll m) {return expo(a, m - 2, m);} //only for prime m
+    ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
+    ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
+    ll mod_mul(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
+    ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+    ll combination(ll n, ll r, ll m, vector<ll> &fact, vector<ll> &ifact)
+    {
+        return mod_mul(fact[n] , mod_mul(ifact[r] , ifact[n - r], m), m);
+    }
+
+    // precomputation of fact and ifact in O(N) for combination:
+
+    /*
+        ll N = 1e6;
+        vector<ll> fact(N + 1);
+        vector<ll> ifact(N + 1);
+        fact[0] = 1
+        for(ll i = 1; i <= N; ++i)
+        {
+            fact[i] = mod_mul(fact[i - 1] , i , mod);
+        }
+        ifact[N] = mminprime(fact[N] , MOD);
+        for(ll i = N - 1; i >= 0; --i)
+        {
+            ifact[i] = mod_mul(ifact[i + 1] , i + 1, MOD);
+        }
+
+        example: cout<<combination(8 , 6, MOD, fact, ifact);
+
+    */
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
     void solve()
     {
         
