@@ -73,7 +73,7 @@
     {
         bool prime = true;
         if(n == 1) return false;
-        for (int i = 2; i * i <= n; ++i)
+        for (ll i = 2; i * i <= n; ++i)
         {
             if(n % i == 0)
             {
@@ -87,7 +87,7 @@
 
     void prime_factors(ll n, map<ll , ll> &m) // O(sqrt(n))
     {
-        for (int i = 2; i * i <= n; ++i)
+        for (ll i = 2; i * i <= n; ++i)
         {
             while(n % i == 0)
             {
@@ -108,7 +108,7 @@
             if(primes[i] == true)
             {
                 v.pb(i);
-                for(int j = 2 * i; j <= n; j += i)
+                for(ll j = 2 * i; j <= n; j += i)
                 {
                     primes[j] = false;
                 }
@@ -120,7 +120,7 @@
     void ext_sieve(ll n, vector<ll> &v, vector<ll> &lp, vector<ll> &hp) // O(nlog(logn))
     {
         vector<bool> primes(n + 10, 1);
-        for (int i = 0; i < n + 10; ++i)
+        for (ll i = 0; i < n + 10; ++i)
         {
             lp.pb(0);
             hp.pb(0);
@@ -132,7 +132,7 @@
             {
                 v.pb(i);
                 lp[i] = hp[i] = i;
-                for(int j = 2 * i; j <= n; j += i)
+                for(ll j = 2 * i; j <= n; j += i)
                 {
                     primes[j] = false;
                     hp[j] = i;
@@ -166,9 +166,9 @@
     vector<vector<ll>> divisors(ll n) // O(nlogn)
     {
         vector<vector<ll>> v(n + 1);
-        for(int i = 1; i <= n; ++i)
+        for(ll i = 1; i <= n; ++i)
         {
-            for(int j = i; j <= n; j += i)
+            for(ll j = i; j <= n; j += i)
             {
                 v[j].pb(i);
             }
@@ -196,7 +196,7 @@
     {
         ll result = n;
 
-        for (int i = 2; i * i <= n; ++i)
+        for (ll i = 2; i * i <= n; ++i)
         {
             if(n % i == 0)
             {
@@ -215,16 +215,16 @@
     vector<ll> phi_1_to_n(ll n) // O(nlog(logn))
     {
         vector<ll> v(n + 1);
-        for (int i = 0; i <= n; ++i)
+        for (ll i = 0; i <= n; ++i)
         {
             v[i] = i;
         }
 
-        for (int i = 2; i <= n; ++i)
+        for (ll i = 2; i <= n; ++i)
         {
             if(v[i] == i)
             {
-                for(int j = i; j <= n; j += i)
+                for(ll j = i; j <= n; j += i)
                 {
                     v[j] -= v[j] / i;
                 }
