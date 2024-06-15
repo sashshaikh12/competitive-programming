@@ -254,7 +254,7 @@
         ll N = 1e6;
         vector<ll> fact(N + 1);
         vector<ll> ifact(N + 1);
-        fact[0] = 1
+        fact[0] = 1;
         for(ll i = 1; i <= N; ++i)
         {
             fact[i] = mod_mul(fact[i - 1] , i , mod);
