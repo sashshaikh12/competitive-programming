@@ -257,7 +257,7 @@
         fact[0] = 1;
         for(ll i = 1; i <= N; ++i)
         {
-            fact[i] = mod_mul(fact[i - 1] , i , mod);
+            fact[i] = mod_mul(fact[i - 1] , i , MOD);
         }
         ifact[N] = mminprime(fact[N] , MOD);
         for(ll i = N - 1; i >= 0; --i)
