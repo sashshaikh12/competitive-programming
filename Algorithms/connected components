@@ -16,7 +16,7 @@ const ll N = 1e5 + 10;
             if(vis[child]) continue;
             // take action on child before entering the child node
 
-            dfs(child)
+            dfs(child);
 
             // take action on child after exiting the child node 
         }
