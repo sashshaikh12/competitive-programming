@@ -1,0 +1,45 @@
+// time complexity: O(V + E)
+
+const ll N = 1e5 + 10;
+    vector<ll> g[N];
+    bool vis[N];
+  vector<vector<ll>> cc; //size of cc = no of connected components
+  vector<ll> current_cc;
+
+    void dfs(ll vertex) // O(V + E), if E is of order V^2 then can blow to O(V^2)
+    {
+        // take action on vertex after entering the vertex 
+        vis[vertex] = true;
+        current_cc.pb(vertex);
+        for(auto child: g[vertex])
+        {
+            if(vis[child]) continue;
+            // take action on child before entering the child node
+
+            dfs(child)
+
+            // take action on child after exiting the child node 
+        }
+
+        // take action on vertex before exiting the vertex
+    }
+
+void solve()
+    {
+        ll v, e;
+        cin>>v>>e;
+        for (int i = 0; i < e; ++i)
+        {
+            ll x, y;
+            cin>>x>>y;
+            g[x].pb(y);
+            g[y].pb(x);
+        }
+        for (int i = 1; i <= v; ++i)
+        {
+            if(vis[i]) continue;
+            current_cc.clear();
+            dfs(i);
+            cc.pb(current_cc);
+        }
+    } 
