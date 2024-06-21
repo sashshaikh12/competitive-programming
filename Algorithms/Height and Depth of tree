@@ -1,3 +1,5 @@
+// O(N)
+
 const ll N = 1e5 + 10;
     vector<ll> g[N];
     vector<ll> depth(N), height(N);
