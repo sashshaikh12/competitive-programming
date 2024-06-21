@@ -2,19 +2,22 @@ const ll N = 1e5 + 10;
     vector<ll> g[N];
     bool vis[N];
 
-    void dfs(ll vertex, ll parent) // O(V + E), if E is of order V^2 then can blow to O(V^2)
+    bool dfs(ll vertex, ll par) // O(V + E), if E is of order V^2 then can blow to O(V^2)
     {
         // take action on vertex after entering the vertex 
         vis[vertex] = true;
+        bool isloop = false;
         for(auto child: g[vertex])
         {
-            if(vis[child]) continue;
+            if(vis[child] && child == par) continue;
+            if(vis[child]) return true;
             // take action on child before entering the child node
 
-            dfs(child, vertex)
+            isloop |= dfs(child, vertex);
 
             // take action on child after exiting the child node 
         }
 
         // take action on vertex before exiting the vertex
+        return isloop;
     }
