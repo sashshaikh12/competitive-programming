@@ -290,6 +290,127 @@
 
     /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
+    //const ll N = 1e5 + 10;
+    //vector<ll> g[N];
+    //bool vis[N];
+
+    /*void dfs(ll vertex) // O(V + E), if E is of order V^2 then can blow to O(V^2)
+    {
+        // take action on vertex after entering the vertex 
+        vis[vertex] = true;
+        for(auto child: g[vertex])
+        {
+            if(vis[child]) continue;
+            // take action on child before entering the child node
+
+            dfs(child);
+
+            // take action on child after exiting the child node 
+        }
+
+        // take action on vertex before exiting the vertex
+    }*/
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+    /*const ll N = 1e5 + 10;
+    vector<ll> g[N];
+    ll vis[N];
+    vector<ll> level(N);*/
+
+    /*void bfs(ll source) //  O(V + E), if E is of order V^2 then can blow to O(V^2)
+    {
+        queue<ll> q;
+        q.push(source);
+        vis[source] = 1;
+        
+        while(!q.empty())
+        {
+            ll cur_v = q.front();
+            q.pop();
+            for(auto child: g[cur_v])
+            {
+                if(!vis[child])
+                {
+                    q.push(child);
+                    vis[child] = 1;
+                    level[child] = level[cur_v] + 1;
+                }
+            }
+        }  
+    }*/
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+    //const ll N = 1e3 + 10;
+    //vector<pair<ll, ll>> g[N];
+
+    /*void dijkstra(ll source) // O(V + ELOGV)
+    {
+        vector<ll> dist(N , INF);
+        vector<ll> vis(N);
+        set<pair<ll,ll>> st;
+        st.insert({0 , source});
+        dist[source] = 0;
+        while(sz(st) > 0)
+        {
+            auto node = *st.begin();
+            ll v = node.ss;
+            ll v_dist = node.ff;
+            st.erase(st.begin());
+            if(vis[v]) continue;
+            vis[v] = 1;
+            for(auto child : g[v])
+            {
+                ll child_v = child.ff;
+                ll wt = child.ss;
+                if(dist[v] + wt < dist[child_v])
+                {
+                    dist[child_v] = dist[v] + wt;
+                    st.insert({dist[child_v] , child_v});
+                }
+            }
+        }
+    }*/
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // DSU: // O(alpha(n)), which is O(logn) in worse case of 1 call, but the average over m calls is constant
+
+    /*ll const N = 1e5 + 10;
+
+    vector<ll> parent(N);
+    vector<ll> size(N);
+
+    void make(ll v)
+    {
+        parent[v] = v;
+        size[v] = 1;
+    }
+
+    ll find(ll v)
+    {
+        if(v == parent[v]) return v;
+        // path compression
+        return parent[v] = find(parent[v]);
+    }
+
+    void Union(ll a, ll b)
+    {
+        a = find(a);
+        b = find(b);
+        if(a != b)
+        {
+            // union by size
+            if(size[a] < size[b]) swap(a,b); // bigger tree to the left and smaller to right
+            parent[b] = a;
+            size[a] += size[b];
+        }
+    }*/
+
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
     void solve()
     {
         
@@ -301,5 +422,10 @@
     #endif
         fastio();
         // code begins here:
-        solve();
+        ll t;
+        cin>>t;
+        while(t--)
+        {
+            solve();
+        }
     }
