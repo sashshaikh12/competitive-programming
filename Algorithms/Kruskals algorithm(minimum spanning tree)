@@ -1,0 +1,63 @@
+// DSU: // O(alpha(n)), which is O(logn) in worse case of 1 call, but the average over m calls is constant
+
+    ll const N = 1e5 + 10;
+
+    vector<ll> parent(N);
+    vector<ll> size(N);
+
+    void make(ll v)
+    {
+        parent[v] = v;
+        size[v] = 1;
+    }
+
+    ll find(ll v)
+    {
+        if(v == parent[v]) return v;
+        // path compression
+        return parent[v] = find(parent[v]);
+    }
+
+    void Union(ll a, ll b)
+    {
+        a = find(a);
+        b = find(b);
+        if(a != b)
+        {
+            // union by size
+            if(size[a] < size[b]) swap(a,b); // bigger tree to the left and smaller to right
+            parent[b] = a;
+            size[a] += size[b];
+        }
+    }
+
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+    void solve()
+    {
+        ll n,m; // n nodes m edges
+        cin>>n>>m;
+        vector<pair<ll , pair<ll ,ll>>> edges;
+        for (int i = 0; i < m; ++i)
+        {
+            ll u, v, wt;
+            cin>>u>>v>>wt;
+            edges.pb({wt , {u , v}});
+        }
+        sort(all(edges));
+
+        for(int i = 1; i <= n; ++i) make(i);
+
+        ll total_cost = 0;
+        for(auto &edge : edges)
+        {
+            ll wt = edge.ff;
+            ll u = edge.ss.ff;
+            ll v = edge.ss.ss;
+            if(find(u) == find(v)) continue;
+            Union(u , v);
+            total_cost += wt;
+        }
+        cout<<total_cost; // prints sum of weights of the min span tree!
+    } 
