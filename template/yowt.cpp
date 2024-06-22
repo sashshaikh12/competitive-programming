@@ -422,10 +422,5 @@
     #endif
         fastio();
         // code begins here:
-        ll t;
-        cin>>t;
-        while(t--)
-        {
-            solve();
-        }
+        solve();
     }
