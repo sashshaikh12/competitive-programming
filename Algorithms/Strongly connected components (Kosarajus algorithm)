@@ -1,0 +1,59 @@
+// O(3 * (V + E)) = O(V + E)
+
+void dfs(ll node , vector<ll> &vis , vector<ll> adj[] , stack<ll> &st)
+    {
+        vis[node] = 1;
+
+        for(auto it: adj[node])
+        {
+            if(!vis[it]) dfs(it , vis , adj , st);
+        }
+
+        st.push(node);
+    }
+
+    void dfs3(ll node , vector<ll> &vis , vector<ll> adjT[])
+    {
+        vis[node] = 1;
+
+        for(auto it: adjT[node])
+        {
+            if(!vis[it]) dfs3(it , vis , adjT);
+        }
+    }
+
+    ll kosaraju(ll v, vector<ll> adj[])
+    {
+        vector<ll> vis(v);
+        stack<ll> st;
+        for (int i = 0; i < v; ++i)
+        {
+            if(!vis[i]) 
+            {
+                dfs(i , vis , adj , st);
+            }
+        }
+
+        vector<ll> adjT[v];
+        for (int i = 0; i < v; ++i)
+        {
+            vis[i] = 0;
+            for(auto it: adj[i])
+            {
+                adjT[it].pb(i);
+            }
+        }
+
+        ll scc = 0;
+        while(!st.empty())
+        {
+            ll node = st.top();
+            st.pop();
+            if(!vis[node])
+            {
+                ++scc;
+                dfs3(node , vis , adjT);
+            }
+        }
+        return scc;
+    }
