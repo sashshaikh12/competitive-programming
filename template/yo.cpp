@@ -380,12 +380,12 @@
     /*ll const N = 1e5 + 10;
 
     vector<ll> parent(N);
-    vector<ll> size(N);
+    vector<ll> size_comp(N);
 
     void make(ll v)
     {
         parent[v] = v;
-        size[v] = 1;
+        size_comp[v] = 1;
     }
 
     ll find(ll v)
@@ -402,9 +402,9 @@
         if(a != b)
         {
             // union by size
-            if(size[a] < size[b]) swap(a,b); // bigger tree to the left and smaller to right
+            if(size_comp[a] < size_comp[b]) swap(a,b); // bigger tree to the left and smaller to right
             parent[b] = a;
-            size[a] += size[b];
+            size_comp[a] += size_comp[b];
         }
     }*/
 
