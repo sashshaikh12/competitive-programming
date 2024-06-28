@@ -33,18 +33,21 @@ struct Hash{
 
     void solve()
     {
-        // example:
+        // example: to check if s[l , r] is palindrome!
         
         string s,t;
-        cin>>s>>t;
+        cin>>s;
+        t = s;
+        reverse(all(t));
         Hash a(s) , b(t);
-        int ans = 0;
-        
-        for (int i = 0; i + t.size() - 1 < s.size(); ++i)
+        int q;
+        cin>>q;
+        for(int i = 0; i < q; ++i)
         {
-            if(a.get(i , i + t.size() - 1) == b.get(0 , t.size() - 1)) ++ans;
-        }  
-        
-        cout<<ans;
+                int l , r;
+                cin>>l>>r;
+                if(a.get(l , r) == b.get(sz(s) - 1 - r , sz(s) - 1 - l) cout<<"YES\n";
+                else cout<<"NO\n";
+        }
           
     } 
