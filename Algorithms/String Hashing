@@ -1,10 +1,10 @@
 struct Hash{
         
         //const int MOD = 1e9 + 7;
-        const int BASE1 = 5689;
-        const int BASE2 = 8861;
+        const ll BASE1 = 5689;
+        const ll BASE2 = 8861;
         
-        vector<pair<int,int>> hashes, Pow;
+        vector<pair<ll,ll>> hashes, Pow;
         
         Hash(string s){
             hashes.assign(s.size() + 1, {1 , 1});
@@ -20,11 +20,11 @@ struct Hash{
             }
         }
         
-        pair<int,int> get(int l, int r){
+        pair<ll,ll> get(ll l, ll r){
             ++l , ++r;// if l,r is passed wrt 0 indexing of string do this cause hashes is being done in 1 indexing
             
-            int hash1 = (hashes[r].first - (hashes[l - 1].first * Pow[r - l + 1].first) % MOD + MOD) % MOD;
-            int hash2 = (hashes[r].second - (hashes[l - 1].second * Pow[r - l + 1].second) % MOD + MOD) % MOD;
+            ll hash1 = (hashes[r].first - (hashes[l - 1].first * Pow[r - l + 1].first) % MOD + MOD) % MOD;
+            ll hash2 = (hashes[r].second - (hashes[l - 1].second * Pow[r - l + 1].second) % MOD + MOD) % MOD;
             
             return {hash1 , hash2};
         }
