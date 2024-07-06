@@ -259,7 +259,7 @@
         {
             fact[i] = mod_mul(fact[i - 1] , i , MOD);
         }
-        ifact[N] = mminprime(fact[N] , MOD);
+        ifact[N] = mminvprime(fact[N] , MOD);
         for(ll i = N - 1; i >= 0; --i)
         {
             ifact[i] = mod_mul(ifact[i + 1] , i + 1, MOD);
