@@ -247,6 +247,8 @@
     {
         return mod_mul(fact[n] , mod_mul(ifact[r] , ifact[n - r], m), m);
     }
+    
+    // we need to handle (n < r) case seperately and cout<<0 ourselves.
 
     // precomputation of fact and ifact in O(N) for combination:
 
