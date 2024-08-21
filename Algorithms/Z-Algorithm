@@ -1,22 +1,22 @@
 vector<int> z_function(string s) // O(n + m) , n is length of text and m is length of pattern, linear time algorithm
-{
-    int n = s.size();
-    vector<int> z(n);
-    int l = 0, r = 0;
-    for(int i = 1; i < n; i++) {
-        if(i < r) {
-            // r - i restricts it to the boundary we have seen
-            z[i] = min(r - i, z[i - l]);
+    {
+        int n = s.size();
+        vector<int> z(n);
+        int l = 0, r = 0;
+        for(int i = 1; i < n; i++) {
+            if(i < r) {
+                // r - i restricts it to the boundary we have seen
+                z[i] = min(r - i, z[i - l]);
+            }
+            // see if we can match more than what we expected till where it should match
+            while(i + z[i] < n && s[z[i]] == s[i + z[i]]) {
+                z[i]++;
+            }
+            // if we end up creating new boundary, update the new boundary
+            if(i + z[i] > r) {
+                l = i;
+                r = i + z[i];
+            }
         }
-        // see if we can match more than what we expected till where it should match
-        while(i + z[i] < n && s[z[i]] == s[i + z[i]]) {
-            z[i]++;
-        }
-        // if we end up creating new boundary, update the new boundary
-        if(i + z[i] > r) {
-            l = i;
-            r = i + z[i];
-        }
+        return z;
     }
-    return z;
-}
