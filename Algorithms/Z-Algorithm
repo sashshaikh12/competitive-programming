@@ -1,4 +1,5 @@
-vector<int> z_function(string s) { // O(n + m) , n is length of text and m is length of pattern, linear time algorithm
+vector<int> z_function(string s) // O(n + m) , n is length of text and m is length of pattern, linear time algorithm
+{
     int n = s.size();
     vector<int> z(n);
     int l = 0, r = 0;
