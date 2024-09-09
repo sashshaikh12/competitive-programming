@@ -1,0 +1,39 @@
+void solve() // O(nlogn), also prints the LIS
+    {
+        ll n;
+        cin>>n;
+        vector<ll> v(n);
+        for (int i = 0; i < n; ++i)
+        {
+            cin>>v[i];
+        }
+        vector<ll> dp, index(n + 5);
+        for (int i = 0; i < n; ++i)
+        {
+            if(sz(dp) == 0 || v[i] > dp.back())
+            {
+                dp.pb(v[i]);
+                index[i] = sz(dp);
+            }
+            else
+            {
+                auto it = lower_bound(all(dp), v[i]);
+                *it = v[i];
+                index[i] = it - (dp.begin()) + 1;
+            }
+        }
+        cout<<sz(dp)<<nline;;
+        ll curr = sz(dp);
+        vector<ll> ans;
+        for (int i = sz(index) - 1; i >= 0; --i)
+        {
+            if(index[i] == curr)
+            {
+                ans.pb(v[i]);
+                --curr;
+            }     
+            if(curr == 0) break;
+        } 
+        reverse(all(ans));
+        for(auto i : ans) cout<<i<<" ";
+    } 
