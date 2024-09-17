@@ -22,7 +22,7 @@ void solve() // O(nlogn), also prints the LIS
                 index[i] = it - (dp.begin()) + 1;
             }
         }
-        cout<<sz(dp)<<nline;;
+        cout<<sz(dp)<<nline;
         ll curr = sz(dp);
         vector<ll> ans;
         for (int i = sz(index) - 1; i >= 0; --i)
