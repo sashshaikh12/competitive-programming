@@ -294,7 +294,7 @@
 
     //const ll N = 1e5 + 10;
     //vector<ll> g[N];
-    //bool vis[N];
+    //vector<bool> vis(N);
 
     /*void dfs(ll vertex) // O(V + E), if E is of order V^2 then can blow to O(V^2)
     {
@@ -317,7 +317,7 @@
 
     /*const ll N = 1e5 + 10;
     vector<ll> g[N];
-    ll vis[N];
+    vector<ll> vis(N);
     vector<ll> level(N);*/
 
     /*void bfs(ll source) //  O(V + E), if E is of order V^2 then can blow to O(V^2)
