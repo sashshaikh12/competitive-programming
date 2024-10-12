@@ -2,7 +2,7 @@
 
 const ll N = 1e5 + 10;
     vector<ll> g[N];
-    vector<ll> par[N];
+    vector<ll> par(N);
 
     void dfs(ll vertex, ll p = -1) // O(V + E), if E is of order V^2 then can blow to O(V^2)
     {
