@@ -1,0 +1,38 @@
+ll LOG = 0;
+    vector<vector<ll>> up;
+
+    void TreeAncestor(ll n, vector<ll> &parent) // assuming root is 0
+    {
+        while((1ll << (LOG + 1)) <= n) 
+        {
+            ++LOG;
+        }
+        up = vector<vector<ll>>(LOG, vector<ll> (n));
+        parent[0] = 0; // this handles extra edges going above root, it keeps everything bounded to root
+        // or else we need to see level[node] using bfs and check if kth ancestor is within tree or not
+        
+        for (ll v = 0; v < n; ++v)
+        {
+            up[0][v] = parent[v];
+        }
+        
+        for (ll j = 1; j < LOG; ++j) // interchanging inner and outer loop works only for parent[i] < i
+        {
+            for(ll v = 0; v < n; ++v)
+            {
+                up[j][v] = up[j - 1][up[j - 1][v]];
+            }
+        }
+    }
+    
+    ll getKthAncestor(ll node, ll k)
+    {
+        for (ll j = 0; j < LOG; ++j)
+        {
+            if(k & (1ll << j))
+            {
+                node = up[j][node];
+            }
+        }
+        return node;
+    }
