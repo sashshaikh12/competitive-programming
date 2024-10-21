@@ -1,9 +1,9 @@
 ll LOG = 0;
     vector<vector<ll>> up;
 
-    void TreeAncestor(ll n, vector<ll> &parent) // assuming root is 0
+    void TreeAncestor(ll n, vector<ll> &parent) // assuming root is 0,  O(N*LOG(N))
     {
-        while((1ll << (LOG + 1)) <= n) 
+        while((1ll << (LOG)) <= n) 
         {
             ++LOG;
         }
@@ -25,7 +25,7 @@ ll LOG = 0;
         }
     }
     
-    ll getKthAncestor(ll node, ll k)
+    ll getKthAncestor(ll node, ll k) // O(LOGN)
     {
         for (ll j = 0; j < LOG; ++j)
         {
