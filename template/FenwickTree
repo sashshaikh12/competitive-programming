@@ -1,0 +1,70 @@
+class Fenwick{
+    private:
+        vector<ll> tree;
+        ll n;
+    public:
+        Fenwick(ll n)
+        {
+            this->n=n;
+            tree.resize(n+1);
+        }
+        void update(ll i, ll x) // O(logn)
+        {
+            while(i <= n)
+            {
+                tree[i] += x;
+                i += (i & -i);
+            }
+        }
+        ll query(ll i) // o(logn)
+        {
+            ll ans = 0;
+            while(i > 0)
+            {
+                ans += tree[i];
+                i -= (i & -i);
+            }
+            return ans;
+        }
+        ll query(ll l, ll r)
+        {
+            return query(r)-query(l-1);
+        }
+};
+    
+    
+    void solve()
+    {
+        ll n;
+        cin>>n;
+        vector<ll> a(n);
+        Fenwick f(n);
+        for (ll i = 1; i <= n; ++i) // BIT is always 1 indexed
+        {
+            cin>>a[i];
+            f.update(i, a[i]);
+        }
+        // build is O(nlogn)
+        ll q;
+        cin>>q;
+        while(q--)
+        {
+            ll op;
+            cin>>op;
+            if(op == 1)
+            {
+                ll l, r;
+                cin>>l>>r; // need to be 1 indexed
+                ll ans = f.query(l , r);
+                cout<<ans<<nline;
+            }
+            else
+            {
+                ll ind,val; // 1 indexed
+                cin>>ind>>val;
+                f.update(ind, -a[ind]);
+                a[ind] = val;
+                f.update(ind, a[ind]);
+            }
+        }
+    } 
